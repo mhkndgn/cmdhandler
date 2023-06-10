@@ -34,7 +34,7 @@ Ex config.cong file:
 
 uuid: <cpe_uuid>  
 kafka_broker_host: localhost:9092  
-kafka_topic: maya_topic  
+kafka_topic: topic  
 interval_sec: 5  
 command[pwd]: pwd  
 command[echo1]: echo "echo1"  
