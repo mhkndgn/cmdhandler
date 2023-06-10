@@ -1,0 +1,45 @@
+
+cmdhandler is a monitoring tool that 
+ - executes requested commands 
+ - gets the results of it
+ - produces a kafka message in JSON format
+
+-----------------------------
+    Build instructions
+-----------------------------
+1. call autoremake --install to create build system files
+2. call ./configure to check dependencies
+3. call make to build the project
+4. call make install to install it
+
+-----------------------------
+    Execute instructions
+-----------------------------
+1. provide a config file with param -f
+Ex: cmdhandler -f config.conf
+
+-----------------------------
+    Config File instructions
+-----------------------------
+1. uuid: uuid to be used as label in the beginning of messages
+2. kafka_broker_host: kafka broker ip:port. for multiple brokers use comma (,) to seperate them
+3. kafka_topic: kafka topic to produce messages
+4. interval_sec: time intervals between messages in seconds
+5. command[key_field]: full expression of command to be executed i.e. with parameters. 
+	- key_fields can be more than 1 and corresponds to the keys of json messages. 
+	- Command outputs with blank (' ') seperated will be parsed to each value of key value pairs of json messages. 
+	- Command output can be more than one line, each line will be parsed accordingly.
+
+Ex config.cong file:
+
+uuid: <cpe_uuid>  
+kafka_broker_host: localhost:9092  
+kafka_topic: maya_topic  
+interval_sec: 5  
+command[pwd]: pwd  
+command[echo1]: echo "echo1"  
+command[echo2]: echo "echo2"  
+command[echo1][echo2]: echo "echo1 echo2"
+
+
+
